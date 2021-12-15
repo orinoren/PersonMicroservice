@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(MockitoExtension.class) // to close the resources automatically after each test.
 class PersonServiceImplTest {
 
     @Mock
@@ -32,6 +32,13 @@ class PersonServiceImplTest {
         personServiceTest = new PersonServiceImpl(personDao);
     }
 
+    /**
+     * 1. Create a person object. <br/>
+     * 2. making the personDao.existsById(person.getId())) function to
+     *    return true for continuing the test as wanted.<br/>
+     * 3. checking if the personServiceTest.addPerson(person) method throws an error
+     *    of {@link PersonAlreadyExistException)} and containing the excepted message.
+     */
     @Test
     @DisplayName("Throw exception because person id already exist")
     public void addPersonTest() {
@@ -40,7 +47,6 @@ class PersonServiceImplTest {
         Person person = new Person("213", "avi", 50, Gender.MALE, 50d, 50d, address);
 
         given(personDao.existsById(person.getId())).willReturn(true);
-
         //when
         //then
         assertThatThrownBy(() -> personServiceTest.addPerson(person))
@@ -49,6 +55,13 @@ class PersonServiceImplTest {
 
     }
 
+    /**
+     * 1. Create a person object. <br/>
+     * 2. making the personDao.existsById(person.getId())) function to
+     *    return false for continuing the test as wanted.<br/>
+     * 3. checking if the personServiceTest.updatePerson(person) method throws an error
+     *    of {@link PersonNotFoundException)} and containing the excepted message.
+     */
     @Test
     @DisplayName("Throw exception because person not found")
     public void updatePersonTest() {
@@ -64,6 +77,13 @@ class PersonServiceImplTest {
 
     }
 
+    /**
+     * 1. create a String person id;<br/>
+     * 2. making the personDao.existsById(person.getId())) function to
+     *    return true for continuing the test as wanted.<br/>
+     *  3. extracting the expected id and calling {@link PersonServiceImpl#deletePerson(String personId)}.<br/>
+     *  4. checking equality of the expected id the person id that created at start.
+     */
     @Test
     @DisplayName("Is delete person made successfully")
     public void deletePersonTest() {
