@@ -40,6 +40,7 @@ public class PersonController {
     @Transactional(readOnly = false)
     @PostMapping("person")
     public ResponseEntity<Person> addPerson(@Valid @RequestBody Person person) {
+        System.out.println(person);
         return ResponseEntity.status(HttpStatus.CREATED).body(personService.addPerson(person));
     }
 

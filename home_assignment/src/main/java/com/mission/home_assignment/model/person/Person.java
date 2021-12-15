@@ -1,11 +1,11 @@
 package com.mission.home_assignment.model.person;
 
 import com.mission.home_assignment.model.address.Address;
+import com.mission.home_assignment.model.gender.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.mission.home_assignment.model.gender.Gender;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.Valid;

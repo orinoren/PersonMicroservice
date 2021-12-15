@@ -1,5 +1,9 @@
 package com.mission.home_assignment.model.address;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mission.home_assignment.config.BooleanDeserializer;
 import com.mission.home_assignment.model.state.State;
 import com.mission.home_assignment.annotations.StateValidation;
 import lombok.AllArgsConstructor;
@@ -7,9 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.NumberFormat;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
@@ -27,6 +29,7 @@ public class Address {
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private String zipcode;
     @NotNull(message = "only true or false is required")
+    @JsonDeserialize(using = BooleanDeserializer.class)
     private Boolean containsAnimals;
 }
 
