@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
-    @NotNull(message = "state is null")
+    @NotNull(message = "state is required")
     @StateValidation(message = "Only israel is required")
     private State state;
     @NotBlank(message = "city is required")
@@ -26,7 +26,8 @@ public class Address {
     @NotBlank(message = "street is required")
     @Size(min = 3, max = 50, message = "street length must be between 3-50")
     private String street;
-    @NumberFormat(style = NumberFormat.Style.NUMBER)
+    @NotBlank(message = "zipcode is required")
+    @Pattern(regexp="^(0|[1-9][0-9]*)$" ,message = "zip code need to be only numbers")
     private String zipcode;
     @NotNull(message = "only true or false is required")
     @JsonDeserialize(using = BooleanDeserializer.class)
