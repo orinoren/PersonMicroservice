@@ -1,5 +1,6 @@
 package com.mission.home_assignment.model.person;
 
+import com.mission.home_assignment.annotations.IsExist;
 import com.mission.home_assignment.model.address.Address;
 import com.mission.home_assignment.model.gender.Gender;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,9 @@ public class Person {
 
     @NotBlank(message = "id is required")
     @Size(min = 3, max = 40)
+    //@IsExist(message = "this person not exist")
+    // don't know what to prefer do the check with this annotation or
+    // in the service layer.
     private String id;
 
     @NotBlank(message = "name is required")
