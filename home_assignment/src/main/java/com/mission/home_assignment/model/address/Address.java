@@ -27,7 +27,7 @@ public class Address {
     @Size(min = 3, max = 50, message = "street length must be between 3-50")
     private String street;
     @NotBlank(message = "zipcode is required")
-    @Pattern(regexp="^(0|[1-9][0-9]*)$" ,message = "zip code need to be only numbers")
+    @Pattern(regexp="^([0-9]*)$" ,message = "zip code need to be only numbers")
     private String zipcode;
     @NotNull(message = "only true or false is required")
     @JsonDeserialize(using = BooleanDeserializer.class)
