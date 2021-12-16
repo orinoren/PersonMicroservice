@@ -13,12 +13,15 @@ import javax.validation.ConstraintValidatorContext;
 public class StateValidator implements ConstraintValidator<StateValidation, State> {
     @Override
     public boolean isValid(State state, ConstraintValidatorContext context) {
-        String stateName = state.name();
-        if (stateName.equals("ISRAEL")) {
-            return true;
+        if (state != null) {
+            String stateName = state.name();
+            if (stateName.equals("ISRAEL")) {
+                return true;
+            }
         }
         return false;
     }
+
     @Override
     public void initialize(StateValidation constraintAnnotation) {
     }
